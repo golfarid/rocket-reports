@@ -1,5 +1,5 @@
 class GroupReport < ApplicationRecord
   belongs_to :role
   belongs_to :report
-  belongs_to :parameter
+  has_many :parameter
 end

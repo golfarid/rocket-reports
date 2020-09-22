@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_143823) do
+ActiveRecord::Schema.define(version: 2020_09_22_065213) do
+
+  create_table "connection_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "connection_id"
+    t.index ["connection_id"], name: "index_connection_types_on_connection_id"
+  end
 
   create_table "connections", force: :cascade do |t|
     t.string "type"
@@ -84,6 +92,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_143823) do
     t.index ["role_id"], name: "index_users_on_role_id"
   end
 
+  add_foreign_key "connection_types", "connections"
   add_foreign_key "datasets", "connections"
   add_foreign_key "datasets", "parameters"
   add_foreign_key "group_reports", "parameters"
